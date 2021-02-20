@@ -1,1 +1,13 @@
 @import 'setup';
+
+div {
+  recipeContainer {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+  }
+}
+
+.wrapper {
+  border: 2px solid blue;
+}

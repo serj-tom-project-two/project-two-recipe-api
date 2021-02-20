@@ -234,3 +234,13 @@ html {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+div recipeContainer {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+}
+
+.wrapper {
+  border: 2px solid blue;
+}
