@@ -253,15 +253,32 @@ body {
 }
 
 .wrapper {
+  max-width: 1600px;
   border: 2px solid blue;
 }
 
 div .recipeContainer {
-  width: 50%;
-  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: calc(100% / 2 - 42px);
   border: 1px solid red;
-  padding: 50px;
+  padding: 25px;
   margin: 20px;
+}
+
+.imgContainer {
+  width: 50%;
+}
+
+.infoContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 header {
@@ -284,12 +301,23 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  width: 50%;
 }
 
 input[type=text] {

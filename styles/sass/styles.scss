@@ -9,17 +9,27 @@ body {
 }
 
 .wrapper {
+  max-width: 1600px;
   border: 2px solid blue;
 }
 
 div {
   .recipeContainer {
-    width: 50%;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 2 - 42px);
     border: 1px solid red;
-    padding: 50px;
+    padding: 25px;
     margin: 20px;
   }
+}
+
+.imgContainer {
+  width: 50%;
+}
+
+.infoContainer {
+  display: flex;
 }
 
 header {
@@ -31,8 +41,17 @@ header {
 
 main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  width:50%;
 }
 
 input[type=text] {

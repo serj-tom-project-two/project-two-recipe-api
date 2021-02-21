@@ -13,11 +13,17 @@ fetch(url)
 
     const recipes = {};
 
-    //ingredients returned in a list
+    //ingredients appended to a ul list and returned into the main loop
     const ingredientLookup = (ingredientList) => {
+      let recipeList = document.createElement('ul');
       for (let i = 0; i < ingredientList.length; i++) {
+        let recipeItem = document.createElement('li');
+        recipeItem.innerText = ingredientList[i];
+        recipeList.appendChild(recipeItem);
+
         console.log(ingredientList[i]);
       };
+      return(recipeList);
     } // end of ingredientLookup
 
     const recipeLookup = () => {
@@ -39,18 +45,34 @@ fetch(url)
         recipeTitle.innerText = label;
         containerItem.appendChild(recipeTitle);
         
+        let infoContainer = document.createElement('div');
+        infoContainer.classList.add('infoContainer');
+
+        let imgContainer = document.createElement('div');
+        imgContainer.classList.add('imgContainer');
+
+        //attaches the image to the div within recipe container
         let image = jsonResponse.hits[recipeCount].recipe.image;
         let recipePictureEl = document.createElement('img');
         recipePictureEl.src = image;
-        containerItem.appendChild(recipePictureEl);
+        imgContainer.appendChild(recipePictureEl);
 
+        infoContainer.appendChild(imgContainer);
+
+        // gets the ingredient list from a function and populates the recipe container
+        let ingredientList = jsonResponse.hits[recipeCount].recipe.ingredientLines;
+        infoContainer.appendChild(ingredientLookup(ingredientList));
+
+        containerItem.appendChild(infoContainer);
+        
         let mainEl = document.querySelector('main');
         mainEl.appendChild(containerItem);
 
 
 
-        let ingredientList = jsonResponse.hits[recipeCount].recipe.ingredientLines;
-        ingredientLookup(ingredientList);
+
+
+
       }; //end of recipeCount loop    
 
     } // end of recipeLookup
