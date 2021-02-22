@@ -1,5 +1,6 @@
 let searchValue = 'chicken';
 
+// this API has a default search request of 5 searches per munite
 const url = new URL('https://api.edamam.com/search');
 url.search = new URLSearchParams({
   app_key: '8761472141e119dcc5fa111cc3c1a023',
@@ -13,9 +14,10 @@ const recipes = {};
 //ingredients appended to a ul list and returned into the main loop
 const ingredientLookup = (ingredientList) => {
   let recipeList = document.createElement('ul');
-  for (let i = 0; i < ingredientList.length; i++) {
+  
+  for (const ingredient of ingredientList) {
     let recipeItem = document.createElement('li');
-    recipeItem.innerText = ingredientList[i];
+    recipeItem.innerText = ingredient;
     recipeList.appendChild(recipeItem);
 
     //console.log(ingredientList[i]);
@@ -25,18 +27,18 @@ const ingredientLookup = (ingredientList) => {
 
 const recipeLookup = (jsonResponse) => {
 
-  let recipeCount = 0;
+  const {hits} = jsonResponse;
 
   //loop through the list of recipies at jsonResponse.hits
-  for (recipeCount = 0; recipeCount < jsonResponse.hits.length; recipeCount++) {
+  for (const hit of hits) {
+    const {
+      recipe: {label, ingredientLines, image},
+    } = hit;
 
     //recipe container item
     let containerItem = document.createElement('div');
     containerItem.classList.add('recipeContainer');
-
-    // initialize variables for label, image and recipe ingredients list
-    let label = jsonResponse.hits[recipeCount].recipe.label;
-
+    
     //target the recipe container to place the info into
     let recipeTitle = document.createElement('h3');
     recipeTitle.innerText = label;
@@ -49,7 +51,6 @@ const recipeLookup = (jsonResponse) => {
     imgContainer.classList.add('imgContainer');
 
     //attaches the image to the div within recipe container
-    let image = jsonResponse.hits[recipeCount].recipe.image;
     let recipePictureEl = document.createElement('img');
     recipePictureEl.src = image;
     imgContainer.appendChild(recipePictureEl);
@@ -57,8 +58,7 @@ const recipeLookup = (jsonResponse) => {
     infoContainer.appendChild(imgContainer);
 
     // gets the ingredient list from a function and populates the recipe container
-    let ingredientList = jsonResponse.hits[recipeCount].recipe.ingredientLines;
-    infoContainer.appendChild(ingredientLookup(ingredientList));
+    infoContainer.appendChild(ingredientLookup(ingredientLines));
 
     containerItem.appendChild(infoContainer);
 
@@ -93,7 +93,8 @@ fetch(url)
 const formEl = document.querySelector('form');
 formEl.addEventListener('submit', function (e) {
   e.preventDefault();
-
+  
+  //set main element back to empty
   let mainDiv = document.querySelector('main');
   mainDiv.innerHTML = "";
 
