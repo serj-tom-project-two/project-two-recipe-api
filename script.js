@@ -120,6 +120,8 @@ formEl.addEventListener('submit', function (e) {
         console.log(jsonResponse);
       });
 
+      inputEl.value = '';
+
   };
 }); //end of event listener
 
