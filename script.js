@@ -73,9 +73,6 @@ recipes.init = (jsonResponse) => {
 
 console.log(jsonResponse);
   recipeLookup(jsonResponse);
-  //Event Listeners here
-
-
 
 }; //end of recipeLookup init
 

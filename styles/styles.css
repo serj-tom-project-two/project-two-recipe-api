@@ -214,6 +214,12 @@ template {
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
 }
 
 *, *:before, *:after {
@@ -235,6 +241,21 @@ html {
   overflow: hidden;
 }
 
+h1 {
+  font-size: 8rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  padding-bottom: 20px;
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+li {
+  font-size: 1.8rem;
+}
+
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -254,7 +275,8 @@ body {
 
 .wrapper {
   max-width: 1600px;
-  border: 2px solid blue;
+  width: 90%;
+  margin: 0 auto;
 }
 
 div .recipeContainer {
@@ -317,17 +339,52 @@ img {
 }
 
 ul {
+  padding: 20px 30px;
   width: 50%;
 }
 
+form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 input[type=text] {
-  padding: 20px 90px;
+  font-size: 2rem;
+  margin: 20px 0;
+  width: 50%;
+  padding: 15px 80px;
 }
 
 button {
-  padding: 20px 50px;
+  font-size: 2rem;
+  width: 25%;
+  padding: 14px 50px;
 }
 
 footer p {
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  div.infoContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  imgContainer,
+  ul {
+    width: 100%;
+  }
 }
