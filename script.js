@@ -31,6 +31,7 @@ recipesApp.getRecipe = (searchValue) => {
     }).then((data) => {
       // console.log (data);
       recipesApp.displayRecipe(data);
+      recipesApp.healthInfo();
     })
 }; //end of getRecipe
 
@@ -94,7 +95,7 @@ recipesApp.displayRecipe = (recipieObject) => {
     let mainEl = document.querySelector('main');
     mainEl.appendChild(containerItem);
 
-    recipesApp.healthInfo();
+  
     
   };
 };
@@ -130,16 +131,13 @@ recipesApp.getUserChoice = () => {
 }; // end of getUserChoice
 
 recipesApp.healthInfo = () => {
-  
-  const healthModal = document.querySelector('img');
 
-  // console.log(healthModal);
-  healthModal.addEventListener('click', function(e){
-
-    
-    console.log("Clicked!", e);
-  });
-
+      let healthEl = document.getElementsByClassName("recipeContainer");
+      for(let healthCount = 0; healthCount < healthEl.length;healthCount++){
+        healthEl[healthCount].addEventListener("click",function(){
+          console.log("The element Num: ", healthCount);
+        })
+      }
 }
 
 recipesApp.init = () => {
