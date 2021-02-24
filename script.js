@@ -133,12 +133,15 @@ recipesApp.getUserChoice = () => {
 recipesApp.healthInfo = () => {
 
       let healthEl = document.getElementsByClassName("recipeContainer");
+      
       for(let healthCount = 0; healthCount < healthEl.length;healthCount++){
-        healthEl[healthCount].addEventListener("click",function(){
+        
+        healthEl[healthCount].addEventListener("click",function() {
           console.log("The element Num: ", healthCount);
-        })
-      }
-}
+        });
+
+      };
+};
 
 recipesApp.init = () => {
   //default searchValue set to chicken
