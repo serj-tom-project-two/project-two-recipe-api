@@ -93,6 +93,9 @@ recipesApp.displayRecipe = (recipieObject) => {
 
     let mainEl = document.querySelector('main');
     mainEl.appendChild(containerItem);
+
+    recipesApp.healthInfo();
+    
   };
 };
 
@@ -126,12 +129,27 @@ recipesApp.getUserChoice = () => {
   });
 }; // end of getUserChoice
 
+recipesApp.healthInfo = () => {
+  
+  const healthModal = document.querySelector('img');
+
+  // console.log(healthModal);
+  healthModal.addEventListener('click', function(e){
+
+    
+    console.log("Clicked!", e);
+  });
+
+}
+
 recipesApp.init = () => {
   //default searchValue set to chicken
   let searchValue = 'chicken';
   
   recipesApp.getRecipe(searchValue);
   recipesApp.getUserChoice();
+  
+
 
 }; // end of init
 
