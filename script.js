@@ -42,11 +42,28 @@ recipesApp.ingredients = (ingredientList) => {
     let recipeItem = document.createElement('li');
     recipeItem.innerText = ingredient;
     recipeList.appendChild(recipeItem);
-
     // console.log(ingredient);
   };
   return (recipeList);
 } // end of ingredientLookup
+
+recipesApp.labelList = (labelInfo) => {
+  let healthList = document.createElement('ul');
+
+  for (const label of labelInfo) {
+    let healthItem = document.createElement('li');
+    healthItem.innerText = label;
+    healthList.appendChild(healthItem);
+  }
+return healthList;  
+  
+  // let nutritionList = document.createElement('ul');
+
+  // for (const label of labelInfo) {
+
+  // }
+
+} 
 
 recipesApp.displayRecipe = (recipieObject) => {
 
@@ -60,8 +77,13 @@ recipesApp.displayRecipe = (recipieObject) => {
     const {
       recipe: {label, ingredientLines, image, healthLabels, totalNutrients},
     } = element;
+    
+    // console.log (totalNutrients);
+    
+    const {CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
 
-    recipesApp.ingredients(ingredientLines);
+    console.log (CA.label, CA.quantity);
+
 
     // recipe container item
     let containerItem = document.createElement('div');
@@ -94,9 +116,14 @@ recipesApp.displayRecipe = (recipieObject) => {
     
     //hidden div containing the healthLabels and the nutritional info
     let healthInfoItem = document.createElement('div');
-    //healthInfoItem.classList.add('healthContainer');
     healthInfoItem.id = "health";
-    // healthInfoItem.id.add('healthContainer');
+
+    //appending health labels and nutritional info
+    
+    healthInfoItem.appendChild(recipesApp.labelList(healthLabels));
+
+
+    // healthInfoItem.appendChild(nutritionList);
 
     containerItem.appendChild(healthInfoItem);
 
