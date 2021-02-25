@@ -29,7 +29,7 @@ recipesApp.getRecipe = (searchValue) => {
     .then ((response) => {
       return response.json();
     }).then((data) => {
-      // console.log (data);
+      console.log (data);
       recipesApp.displayRecipe(data);
       recipesApp.healthInfo();
     })
@@ -58,7 +58,7 @@ recipesApp.displayRecipe = (recipieObject) => {
     
     // destructureing the hits element
     const {
-      recipe: {label, ingredientLines, image},
+      recipe: {label, ingredientLines, image, healthLabels, totalNutrients},
     } = element;
 
     recipesApp.ingredients(ingredientLines);
@@ -91,14 +91,23 @@ recipesApp.displayRecipe = (recipieObject) => {
 
     // create the infoContainer <div> inside of the containerItem <div>
     containerItem.appendChild(infoContainer);
+    
+    //hidden div containing the healthLabels and the nutritional info
+    let healthInfoItem = document.createElement('div');
+    //healthInfoItem.classList.add('healthContainer');
+    healthInfoItem.id = "health";
+    // healthInfoItem.id.add('healthContainer');
+
+    containerItem.appendChild(healthInfoItem);
+
 
     let mainEl = document.querySelector('main');
     mainEl.appendChild(containerItem);
 
-  
-    
   };
 };
+
+
 
 recipesApp.getUserChoice = () => {
   
@@ -133,15 +142,24 @@ recipesApp.getUserChoice = () => {
 recipesApp.healthInfo = () => {
 
       let healthEl = document.getElementsByClassName("recipeContainer");
-      
-      for(let healthCount = 0; healthCount < healthEl.length;healthCount++){
+
+      //loop through all recipe container objects and add Event Listener
+      for(let i = 0; i < healthEl.length; i++){
         
-        healthEl[healthCount].addEventListener("click",function() {
-          console.log("The element Num: ", healthCount);
+        healthEl[i].addEventListener("click",function() {
+          //create an array of objects with the ID of health
+          let healthItems = document.querySelectorAll('#health');
+          healthItems[i].classList.toggle("healthContainer");
+
+          //console.log("The element Num: ", i);
         });
 
       };
 };
+
+// ^ we need to make each dive also have a div with the respoective health text in it, position it to overlay the main divs. and set opasity to 0.
+
+// after an element is clicked, we need to make the div with that element number visiable
 
 recipesApp.init = () => {
   //default searchValue set to chicken

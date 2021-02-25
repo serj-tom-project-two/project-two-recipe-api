@@ -40,8 +40,24 @@ div {
     border: 1px solid red;
     padding: 25px;
     margin: 20px;
+    position: relative;
   }
 }
+
+.healthContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100%;
+  border: 1px solid red;
+  padding: 25px;
+  z-index: 10;
+  background-color: lightseagreen;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 
 .imgContainer {
   width: 50%;
@@ -100,4 +116,4 @@ footer {
   }
 }
 
-@include tabletSize1200;
+@include tabletSize1490;
