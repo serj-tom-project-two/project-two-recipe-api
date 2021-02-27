@@ -313,6 +313,14 @@ div .recipeContainer {
   left: 0;
 }
 
+.healthLi li {
+  display: none;
+}
+
+.active li {
+  display: block;
+}
+
 .imgContainer {
   width: 50%;
 }
