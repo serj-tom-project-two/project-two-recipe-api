@@ -56,11 +56,11 @@ recipesApp.labelList = (labelInfo) => {
 
   return healthList;
 
-  // let nutritionList = document.createElement('ul');
+//   let nutritionList = document.createElement('ul');
 
-  // for (const label of labelInfo) {
+//   for (const label of labelInfo) {
 
-  //
+// };
 
 }; // end of labelList
 
@@ -123,8 +123,6 @@ recipesApp.displayRecipe = (recipeObject) => {
 
   };
 };
-
-
 
 recipesApp.getUserChoice = () => {
 
