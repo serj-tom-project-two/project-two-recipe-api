@@ -1,5 +1,6 @@
 @mixin tabletSize1490 {
      @media (max-width: 1490px) {
+          
           div.infoContainer {
                flex-direction: column;
                align-items: center;
@@ -10,11 +11,12 @@
                width: 100%;
           }
      
-     }
-}
+     }// end of media query
+}// end of mixin
 
 @mixin tabletSize900 {
      @media (max-width: 900px) {
+
           main {
                flex-direction: column;
                align-items: center;
@@ -23,22 +25,23 @@
           div.recipeContainer {
                width: 85%;
           }
-     }
 
-     form {
-          flex-direction: column;
-     }
+          form {
+               flex-direction: column;
+          }
+          
+          input[type=text] {
+               width: 80%;
+               text-align: center;
+               padding: 15px 0;
+          }
      
-     input[type=text] {
-          width: 100%;
-          text-align: center;
-          padding: 15px 0;
-     }
-
-     button {
-          width: 50%;
-     }
-}
+          button {
+               width: 50%;
+          }
+     
+     } // end of media query
+} // end of mixin
 
 @mixin phoneSize760 {
      @media (max-width: 760px) {
@@ -46,14 +49,6 @@
           h1 {
                font-size: 5rem;
           }
-     }
-}
 
-@mixin phoneSize450 {
-     @media (max-width: 450px) {
-
-          h1 {
-               font-size: 4rem;
-          }
-     }
-}
+     }// end of media query
+}// end of mixin

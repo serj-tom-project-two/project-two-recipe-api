@@ -2,21 +2,30 @@
 @import 'mixins';
 
 h1 {
+  font-family: 'Lobster', cursive;
   font-size: 8rem;
-  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Lobster', cursive;
+  padding-bottom: 20px;
+  font-size: 3.5rem;
+  text-align: center;
 }
 
 h3 {
+  font-family: 'Lobster', cursive;
   padding-bottom: 20px;
   font-size: 3.5rem;
   text-align: center;
 }
 
 li {
-  
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1.8rem;
+  padding: 4px 0;
 }
-
 
 body {
   display: flex;
@@ -24,6 +33,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background-color: #B0C4DE;
 }
 
 .wrapper {
@@ -36,37 +46,45 @@ div {
   .recipeContainer {
     display: flex;
     flex-direction: column;
-    width: calc(100% / 2 - 42px);
-    border: 1px solid red;
+    width: calc(100% / 2 - 40px);
     padding: 25px;
     margin: 20px;
     position: relative;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover, &:focus {
+      border-radius: 65px;
+      background-color: RGB(70, 130, 180, 0.5);
+    }
   }
 }
 
 .healthContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-width: 100%;
   min-height: 100%;
-  border: 1px solid red;
   padding: 25px;
   z-index: 10;
-  background-color: lightseagreen;
+  background-color: #4A606F;
+  border-radius: 65px;
   position: absolute;
   top: 0;
   left: 0;
 }
 
 .healthLi {
-    li {
-      display: none;
-    }
+  display: none;
 }
 
 .active {
-  li {
-    display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #F0F8FF;
+  .nutrientLi {
+    margin-top: 5vh ;
   }
 }
 
@@ -83,6 +101,9 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  min-height: 30vh;
+  background: linear-gradient( 180deg, #778899, #B0C4DE );
 }
 
 main {
@@ -109,21 +130,44 @@ form {
 }
 
 input[type=text] {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
   margin: 20px 0;
   width: 50%;
-  padding: 15px 80px;
+  padding: 15px 0;
+  color: #2F4F4F;
+  border-radius: 50px;
+  text-align: center;
 }
 
 button {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
   width: 25%;
-  padding: 14px 50px;
+  padding: 18px 50px;
+  margin: 0 10px;
+  border: none;
+  color: #F0F8FF;
+  background-color: RGB(119, 136, 153);
+  border-radius: 50px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover, &:focus {
+    scale: 1.05;
+    color: #00FFFF;
+    background-color: RGB(70, 130, 180, 0.9);
+  }
 }
 
 footer {
-  p {
-    text-align: center;
+  width: 100%;
+  background-color: #778899;
+  text-align: center;
+  padding: 20px 0;
+  a {
+    font-size: 1.8rem;
+    color: #F0F8FF;
+    text-decoration: none
   }
 }
 
@@ -132,5 +176,3 @@ footer {
 @include tabletSize900;
 
 @include phoneSize760;
-
-@include phoneSize450;

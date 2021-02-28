@@ -1,7 +1,15 @@
+//MVP
 // take input from user for food type... AKA - chicken, beef, fish etc...
 // append recipes onto  the main div on the page
 // appended recipes will show... name, image and list of ingredents
 
+// Stretch Goals 
+//Add nutritional Info as a clickable info Panel associated with the Recipe Panel
+
+
+
+//Technical Challenges
+// Make the healthInfo hidden Div inline with the other column
 
 // creating namespace
 const recipesApp = {};
@@ -9,8 +17,6 @@ const recipesApp = {};
 // storing the API key and base URL
 recipesApp.key = '8761472141e119dcc5fa111cc3c1a023';
 recipesApp.baseUrl = 'https://api.edamam.com/search';
-
-
 
 recipesApp.getRecipe = (searchValue) => {
 
@@ -27,7 +33,8 @@ recipesApp.getRecipe = (searchValue) => {
     .then((response) => {
       return response.json();
     }).then((data) => {
-      console.log(data);
+
+      // console.log(data);
       recipesApp.displayRecipe(data);
       recipesApp.healthInfo();
     })
@@ -53,49 +60,29 @@ recipesApp.nutrients = (totalNutrients) =>{
   recipeNutrients.appendChild(nutrientsTitle);
 
   recipeNutrients.classList.add('nutrientLi');
-  const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
-  
-  
-  let calciumEl = document.createElement('li');
-  const calcium = Object.keys(CA).map((key) => [CA[key]]);
-  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
-  calciumEl.innerText = `${Math.floor(calcium[1])} ${calcium[2]} of ${calcium[0]}`;
-  recipeNutrients.appendChild(calciumEl);
 
+  // need an array of nutrient property names
+  const nutrientNames = ['CA', 'CHOLE', 'FAT', 'FE', 'SUGAR'];
 
-  let cholestoralEl = document.createElement('li');
-  const cholestoral = Object.keys(CHOLE).map((key) => [CHOLE[key]]);
-  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
-  cholestoralEl.innerText = `${Math.floor(cholestoral[1])} ${cholestoral[2]} of ${cholestoral[0]}`;
-  recipeNutrients.appendChild(cholestoralEl);
+  // loop through each nutrient
+  for (nutrientName of nutrientNames) {
+    // get the nutrient, destructure if you want
+    const { label, quantity, unit } = totalNutrients[nutrientName];
+    console.log(totalNutrients[nutrientName]);
 
-  let fatEl = document.createElement('li');
-  const fat = Object.keys(FAT).map((key) => [FAT[key]]);
-  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
-  fatEl.innerText = `${Math.floor(fat[1])} ${fat[2]} of ${fat[0]}`;
-  recipeNutrients.appendChild(fatEl);
-
-  let ironEl = document.createElement('li');
-  const iron = Object.keys(FE).map((key) => [FE[key]]);
-  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
-  ironEl.innerText = `${Math.floor(iron[1])} ${iron[2]} of ${iron[0]}`;
-  recipeNutrients.appendChild(ironEl);
-
-
-  let sugarEl = document.createElement('li');
-  const sugar = Object.keys(SUGAR).map((key) => [SUGAR[key]]);
-  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
-  sugarEl.innerText = `${Math.floor(sugar[1])} ${sugar[2]} of ${sugar[0]}`;
-  recipeNutrients.appendChild(sugarEl);
-
+    // create an element and append for each nutrient
+    let element = document.createElement('li');
+    element.innerText = `${Math.floor(quantity)} ${unit} of ${label}`;
+    recipeNutrients.appendChild(element);
+  } // end of for loop
 
   return(recipeNutrients);
-}
+} // end of nutrients
 
 recipesApp.labelList = (labelInfo, totalNutrients) => {
   let healthList = document.createElement('ul');
   healthList.classList.add('healthLi');
- 
+
   let healthTitle = document.createElement('h3');
   healthTitle.innerText = "Health Info";
   healthList.appendChild(healthTitle);
@@ -106,9 +93,6 @@ recipesApp.labelList = (labelInfo, totalNutrients) => {
     healthList.appendChild(healthItem);
   };
 
-  //totalNutrients.CA.label, .quantity and .unit
-  // const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
-  
   const nutrientList = recipesApp.nutrients(totalNutrients);
 
   healthList.appendChild(nutrientList);
@@ -128,16 +112,12 @@ recipesApp.displayRecipe = (recipeObject) => {
       recipe: { label, ingredientLines, image, healthLabels, totalNutrients },
     } = element;
 
-    // const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
-
-    // console.log (CA.label, CA.quantity);
-
     // <div> with a class of recipeContainer for each recipe
     let containerItem = document.createElement('div');
     containerItem.classList.add('recipeContainer');
 
     //target the recipe container to place the recipe name into it
-    let recipeTitle = document.createElement('h3');
+    let recipeTitle = document.createElement('h2');
     recipeTitle.innerText = label;
     containerItem.appendChild(recipeTitle);
 

@@ -242,18 +242,29 @@ html {
 }
 
 h1 {
+  font-family: 'Lobster', cursive;
   font-size: 8rem;
-  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Lobster', cursive;
+  padding-bottom: 20px;
+  font-size: 3.5rem;
+  text-align: center;
 }
 
 h3 {
+  font-family: 'Lobster', cursive;
   padding-bottom: 20px;
   font-size: 3.5rem;
   text-align: center;
 }
 
 li {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1.8rem;
+  padding: 4px 0;
 }
 
 body {
@@ -271,6 +282,7 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   min-height: 100vh;
+  background-color: #B0C4DE;
 }
 
 .wrapper {
@@ -287,11 +299,18 @@ div .recipeContainer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: calc(100% / 2 - 42px);
-  border: 1px solid red;
+  width: calc(100% / 2 - 40px);
   padding: 25px;
   margin: 20px;
   position: relative;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+div .recipeContainer:hover, div .recipeContainer:focus {
+  border-radius: 65px;
+  background-color: RGB(70, 130, 180, 0.5);
 }
 
 .healthContainer {
@@ -302,23 +321,40 @@ div .recipeContainer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   min-width: 100%;
   min-height: 100%;
-  border: 1px solid red;
   padding: 25px;
   z-index: 10;
-  background-color: lightseagreen;
+  background-color: #4A606F;
+  border-radius: 65px;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.healthLi li {
+.healthLi {
   display: none;
 }
 
-.active li {
-  display: block;
+.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #F0F8FF;
+}
+
+.active .nutrientLi {
+  margin-top: 5vh;
 }
 
 .imgContainer {
@@ -345,6 +381,10 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
+  min-height: 30vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#778899), to(#B0C4DE));
+  background: linear-gradient(180deg, #778899, #B0C4DE);
 }
 
 main {
@@ -385,20 +425,48 @@ form {
 }
 
 input[type=text] {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
   margin: 20px 0;
   width: 50%;
-  padding: 15px 80px;
+  padding: 15px 0;
+  color: #2F4F4F;
+  border-radius: 50px;
+  text-align: center;
 }
 
 button {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
   width: 25%;
-  padding: 14px 50px;
+  padding: 18px 50px;
+  margin: 0 10px;
+  border: none;
+  color: #F0F8FF;
+  background-color: RGB(119, 136, 153);
+  border-radius: 50px;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-footer p {
+button:hover, button:focus {
+  scale: 1.05;
+  color: #00FFFF;
+  background-color: RGB(70, 130, 180, 0.9);
+}
+
+footer {
+  width: 100%;
+  background-color: #778899;
   text-align: center;
+  padding: 20px 0;
+}
+
+footer a {
+  font-size: 1.8rem;
+  color: #F0F8FF;
+  text-decoration: none;
 }
 
 @media (max-width: 1490px) {
@@ -430,33 +498,24 @@ footer p {
   div.recipeContainer {
     width: 85%;
   }
-}
-
-form {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-input[type=text] {
-  width: 100%;
-  text-align: center;
-  padding: 15px 0;
-}
-
-button {
-  width: 50%;
+  form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  input[type=text] {
+    width: 80%;
+    text-align: center;
+    padding: 15px 0;
+  }
+  button {
+    width: 50%;
+  }
 }
 
 @media (max-width: 760px) {
   h1 {
     font-size: 5rem;
-  }
-}
-
-@media (max-width: 450px) {
-  h1 {
-    font-size: 4rem;
   }
 }
