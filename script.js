@@ -44,9 +44,61 @@ recipesApp.ingredients = (ingredientList) => {
   return (recipeList);
 } // end of ingredients
 
-recipesApp.labelList = (labelInfo) => {
+//Gets the important info about the Nutrients contained in the recipe object
+recipesApp.nutrients = (totalNutrients) =>{
+  let recipeNutrients = document.createElement('ul');
+  
+  let nutrientsTitle = document.createElement('h3');
+  nutrientsTitle.innerText = "Nutritional Facts";
+  recipeNutrients.appendChild(nutrientsTitle);
+
+  recipeNutrients.classList.add('nutrientLi');
+  const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
+  
+  
+  let calciumEl = document.createElement('li');
+  const calcium = Object.keys(CA).map((key) => [CA[key]]);
+  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
+  calciumEl.innerText = `${Math.floor(calcium[1])} ${calcium[2]} of ${calcium[0]}`;
+  recipeNutrients.appendChild(calciumEl);
+
+
+  let cholestoralEl = document.createElement('li');
+  const cholestoral = Object.keys(CHOLE).map((key) => [CHOLE[key]]);
+  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
+  cholestoralEl.innerText = `${Math.floor(cholestoral[1])} ${cholestoral[2]} of ${cholestoral[0]}`;
+  recipeNutrients.appendChild(cholestoralEl);
+
+  let fatEl = document.createElement('li');
+  const fat = Object.keys(FAT).map((key) => [FAT[key]]);
+  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
+  fatEl.innerText = `${Math.floor(fat[1])} ${fat[2]} of ${fat[0]}`;
+  recipeNutrients.appendChild(fatEl);
+
+  let ironEl = document.createElement('li');
+  const iron = Object.keys(FE).map((key) => [FE[key]]);
+  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
+  ironEl.innerText = `${Math.floor(iron[1])} ${iron[2]} of ${iron[0]}`;
+  recipeNutrients.appendChild(ironEl);
+
+
+  let sugarEl = document.createElement('li');
+  const sugar = Object.keys(SUGAR).map((key) => [SUGAR[key]]);
+  //console.log(` ${calories[1]} ${calories[2]} of ${calories[0]}`);
+  sugarEl.innerText = `${Math.floor(sugar[1])} ${sugar[2]} of ${sugar[0]}`;
+  recipeNutrients.appendChild(sugarEl);
+
+
+  return(recipeNutrients);
+}
+
+recipesApp.labelList = (labelInfo, totalNutrients) => {
   let healthList = document.createElement('ul');
   healthList.classList.add('healthLi');
+ 
+  let healthTitle = document.createElement('h3');
+  healthTitle.innerText = "Health Info";
+  healthList.appendChild(healthTitle);
 
   for (const label of labelInfo) {
     let healthItem = document.createElement('li');
@@ -54,13 +106,13 @@ recipesApp.labelList = (labelInfo) => {
     healthList.appendChild(healthItem);
   };
 
+  //totalNutrients.CA.label, .quantity and .unit
+  // const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
+  
+  const nutrientList = recipesApp.nutrients(totalNutrients);
+
+  healthList.appendChild(nutrientList);
   return healthList;
-
-//   let nutritionList = document.createElement('ul');
-
-//   for (const label of labelInfo) {
-
-// };
 
 }; // end of labelList
 
@@ -76,7 +128,7 @@ recipesApp.displayRecipe = (recipeObject) => {
       recipe: { label, ingredientLines, image, healthLabels, totalNutrients },
     } = element;
 
-    const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
+    // const { CA, CHOLE, FAT, FE, SUGAR } = totalNutrients;
 
     // console.log (CA.label, CA.quantity);
 
@@ -114,7 +166,7 @@ recipesApp.displayRecipe = (recipeObject) => {
     healthInfoItem.id = "health";
 
     //appending health labels and nutritional info
-    healthInfoItem.appendChild(recipesApp.labelList(healthLabels));
+    healthInfoItem.appendChild(recipesApp.labelList(healthLabels, totalNutrients));
 
     containerItem.appendChild(healthInfoItem);
 
