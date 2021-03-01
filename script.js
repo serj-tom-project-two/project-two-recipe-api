@@ -6,10 +6,8 @@
 // Stretch Goals 
 //Add nutritional Info as a clickable info Panel associated with the Recipe Panel
 
-
-
 //Technical Challenges
-// Make the healthInfo hidden Div inline with the other column
+// Make the healthInfo hidden Div inline with the other column (Any targeting of created elements)
 
 // creating namespace
 const recipesApp = {};
@@ -34,7 +32,6 @@ recipesApp.getRecipe = (searchValue) => {
       return response.json();
     }).then((data) => {
 
-      // console.log(data);
       recipesApp.displayRecipe(data);
       recipesApp.healthInfo();
     })
@@ -68,7 +65,6 @@ recipesApp.nutrients = (totalNutrients) =>{
   for (nutrientName of nutrientNames) {
     // get the nutrient, destructure if you want
     const { label, quantity, unit } = totalNutrients[nutrientName];
-    console.log(totalNutrients[nutrientName]);
 
     // create an element and append for each nutrient
     let element = document.createElement('li');

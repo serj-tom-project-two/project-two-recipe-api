@@ -351,6 +351,7 @@ div .recipeContainer:hover, div .recipeContainer:focus {
       -ms-flex-align: center;
           align-items: center;
   color: #F0F8FF;
+  width: 100%;
 }
 
 .active .nutrientLi {
